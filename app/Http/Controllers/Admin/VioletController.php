@@ -153,34 +153,12 @@ class VioletController extends Controller
      * @param  \App\Models\Violet  $violet
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Violet $violet)
+    public function destroy($image_id)
     {
-        //
+        return json_encode($image_id*10);
     }
 
-    public function fialform(Request $request)
-    {
-        $item = [];
-        $selectioners = Selectioner::all();
-        
-    
-        if($request->has('name')){
-            $violet = $this->store($request);
-            $selectioner = $selectioners->find($violet->selectioner_id);
-            $images = Image::all()->where('violet_id', $violet->id);
-           
-            return view('items.fialform', [
-                'item' => $violet,
-                'selectioners' => $selectioners,
-                'selectioner' => $selectioner,
-                'images' => $images
-            ]);
-        }
-        return view('items.fialform', [
-            'item' => $item, 
-            'selectioners' => $selectioners
-        ]);
-    }
+
     public function selform(Request $request)
     {
         $item = '';

@@ -23,8 +23,6 @@ Route::get('/', [VioletController::class, 'index']);
 Route::get('/violet/{id}', [VioletController::class, 'show'])
         ->name('violet');
 
-Route::match(['get', 'post'],'/fialform', [AdminVioletController::class, 'fialform']);
-Route::match(['get', 'post'],'/selform', [AdminVioletController::class, 'selform']);
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('/', App\Http\Controllers\Admin\IndexController::class)->name('index');

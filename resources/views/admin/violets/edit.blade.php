@@ -3,6 +3,7 @@
 Фиалка @parent
 @endsection
 @section('content')
+
     <div class="row m-2">
         <b>Редактирование фиалки №{{ $violet->id }}</b>
         @include('inc.messages')
@@ -41,10 +42,10 @@
     <div class="row">
         
             @foreach ($images as $image)
-            <div class="col-3 m-2 image">
+            <div class="col-3 m-2 image" name="{{ $image->id }}">
                 <img src="{{ $image->url }}" alt="">
                 
-                <div class="cl-btn-2 imagedel-button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <div class="cl-btn-2 imagedel-button">
                     <div>
                         <div class="leftright"></div>
                         <div class="rightleft"></div>
@@ -58,8 +59,17 @@
             
         
     </div>
-    Удалить фото?
-    Да
-    Нет
+    <div class="background"></div>
+    <div class="imagedel-modal">
+        <div class="imagedel-modal_text">Удалить фото?</div>
+        <div>
+            <button class="btn btn-primary p-2 m-2 yes" name="yes">Да</button>
+            <button class="btn btn-danger p-2 m-2 no" name="no">Нет</button>
+        </div>
+        
+    </div>
+    
+    
+    
 
 @endsection
