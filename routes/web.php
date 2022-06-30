@@ -29,3 +29,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::resource('violets', AdminVioletController::class);
         Route::resource('selectioners', AdminSelectionerController::class);
     }); 
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
