@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ItemController;
+use App\Http\Controllers\Account\IndexController as AccountController;
 use App\Http\Controllers\VioletController;
 use App\Http\Controllers\Admin\VioletController as AdminVioletController;
 use App\Http\Controllers\Admin\SelectionerController as AdminSelectionerController;
@@ -24,7 +24,13 @@ Route::get('/violet/{id}', [VioletController::class, 'show'])
         ->name('violet');
 
 Route::group(['middleware' => 'auth'], function(){
-        
+        Route::group(['prefix' => 'account', 'as' => 'account.'], function () {
+                Route::get('/', AccountController::class)->name('index');
+                Route::get('logout', function(){
+                        \Auth::logout();
+                        return redirect()->route('login');
+                })->name('logout');
+        });         
         //Admin routes
         Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin.check'], function () {
                 Route::get('/', App\Http\Controllers\Admin\IndexController::class)->name('index');
