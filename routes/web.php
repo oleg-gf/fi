@@ -5,7 +5,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\VioletController;
 use App\Http\Controllers\Admin\VioletController as AdminVioletController;
 use App\Http\Controllers\Admin\SelectionerController as AdminSelectionerController;
-
+use App\Http\Controllers\Admin\ImageController as AdminImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,12 +23,17 @@ Route::get('/', [VioletController::class, 'index']);
 Route::get('/violet/{id}', [VioletController::class, 'show'])
         ->name('violet');
 
+Route::group(['middleware' => 'auth'], function(){
+        
+        //Admin routes
+        Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin.check'], function () {
+                Route::get('/', App\Http\Controllers\Admin\IndexController::class)->name('index');
+                Route::resource('violets', AdminVioletController::class);
+                Route::resource('selectioners', AdminSelectionerController::class);
+                Route::resource('images', AdminImageController::class);
+        }); 
+});
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
-        Route::get('/', App\Http\Controllers\Admin\IndexController::class)->name('index');
-        Route::resource('violets', AdminVioletController::class);
-        Route::resource('selectioners', AdminSelectionerController::class);
-    }); 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

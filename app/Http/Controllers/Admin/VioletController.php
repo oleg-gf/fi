@@ -71,14 +71,6 @@ class VioletController extends Controller
             );            
         }
         
-       
-
-
-
-
-        
-
-        
         if ($violet) {
             return redirect()->route('admin.violets.index')
             ->with('success', 'Фиалка добавлена');
@@ -153,9 +145,9 @@ class VioletController extends Controller
      * @param  \App\Models\Violet  $violet
      * @return \Illuminate\Http\Response
      */
-    public function destroy($image_id)
+    public function destroy(Violet $violet)
     {
-        return json_encode($image_id*10);
+        
     }
 
 
