@@ -57,7 +57,7 @@
                                     <!-- If we need scrollbar -->
                                     <div class="swiper-scrollbar"></div>
                                 </div>
-                                @else
+                                @elseif ($violet->image->count() == 1)
                                     <div><img src="{{ $violet->image->first()->url }}" alt=""></div>
                                 @endif
                                 

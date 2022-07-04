@@ -34,7 +34,7 @@
                 <div class="form-group col-6">
                     <input type="file" class="form-control" name="image">Загрузить фото
                 </div>
-                <input type="submit" class="btn btn-success">
+                <input type="submit" class="btn btn-success" value="Сохранить">
             </form>
         </div>
 

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Violet;
+use App\Models\Image;
 
 class ImageController extends Controller
 {
@@ -78,8 +80,14 @@ class ImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($image)
     {
-        //
+        
+        try {
+            Image::find($image)->delete();
+            return response()->json(['status' => 'ok'], 200);
+        } catch (Exeption $e) {
+            return response()->json(['status' => 'error']);
+        }
     }
 }

@@ -8,7 +8,9 @@ use App\Models\Image;
 use App\Http\Requests\StoreVioletRequest;
 use App\Http\Requests\UpdateVioletRequest;
 use App\Models\Selectioner;
+use App\Http\Requests\Violets\EditRequest;
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Str;
 use Illuminate\Http\File;
 use Illuminate\Http\UploadedFile;
@@ -117,18 +119,18 @@ class VioletController extends Controller
      * @param  \App\Models\Violet  $violet
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Violet $violet)
+    public function update(EditRequest $request, Violet $violet)
     {
-        $violet->fill($request->only([
-            "name", "price",  "selectioner_id", "description"
-            ])
-        );
+        $violet->fill($request->validated());
         
         $image = $request->file('image');
         if($image){
             $path = $image->store('photos', 'public');
             $imageUrl = Storage::url($path);
-            $violet->image->first()->update(['url' => $imageUrl]);
+            Image::firstOrCreate(
+                    ['url' => $imageUrl], 
+                    ['violet_id' => $violet->id]
+            );  
         }
         
 

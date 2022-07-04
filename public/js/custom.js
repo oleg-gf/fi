@@ -48,7 +48,36 @@ $(document).ready(function() {
   $(".yes").click(function () {
     $(".imagedel-modal").hide();
     $(".background").hide();
-    console.log(image_id);
+        let url = 'http://' + window.location.host + `/admin/images/` + image_id;
     
+        $.ajax({
+          method: "DELETE",
+          url: url,
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          },
+
+          dataType: "json",
+          success: function (data) {
+            console.log( data.status );
+            $(`[name=${image_id}]`).empty();
+          },
+          error: (xhr, ajaxOptions, thrownError) => {
+
+            console.log(ajaxOptions);
+
+
+          },
+          statusCode: {
+            200: function () { 
+              console.log( "Ok" );
+            },
+            400: function () { 
+              console.log( "notOk" );
+            }      
+          }  
+        });
+
+
   });  
 });

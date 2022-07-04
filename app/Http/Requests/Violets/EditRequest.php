@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Violets;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateVioletRequest extends FormRequest
+class EditRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,6 +13,7 @@ class UpdateVioletRequest extends FormRequest
      */
     public function authorize()
     {
+        if(\Auth::user()->is_admin) return true;
         return false;
     }
 
@@ -25,7 +26,7 @@ class UpdateVioletRequest extends FormRequest
     {
         return [
             "name" => ["required", "string"],
-            "price" => ["required","number" ],
+            "price" => ["required","numeric" ],
             "description" => ["required", "string"],
             "image" => ["required", "file"],
             "selectioner_id" => ["required","numeric" ]
