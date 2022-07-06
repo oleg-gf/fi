@@ -13,6 +13,7 @@ class UpdateVioletRequest extends FormRequest
      */
     public function authorize()
     {
+        if(\Auth::user()->is_admin) return true;
         return false;
     }
 
@@ -25,9 +26,9 @@ class UpdateVioletRequest extends FormRequest
     {
         return [
             "name" => ["required", "string"],
-            "price" => ["required","number" ],
+            "price" => ["required","numeric" ],
             "description" => ["required", "string"],
-            "image" => ["required", "file"],
+            "images.*" => ["present", "image"],
             "selectioner_id" => ["required","numeric" ]
         ];
     }

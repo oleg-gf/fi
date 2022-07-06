@@ -30,7 +30,7 @@
                 <textarea name="description" class="form-control"cols="30" rows="10" placeholder="Описание">{!! old('description')!!}</textarea>
                 </div>
                 <div class="form-group col-6">
-                    <input type="file" class="form-control" name="images[]" multiple>Загрузить фото
+                    <input type="file" class="form-control" name="images" multiple>Загрузить фото
                 </div>
                 <input type="submit" class="btn btn-success">
             </form>

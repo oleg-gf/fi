@@ -44,6 +44,7 @@ $(document).ready(function() {
   $(".no").click(function () {
     $(".imagedel-modal").hide();
     $(".background").hide();
+   
   });  
   $(".yes").click(function () {
     $(".imagedel-modal").hide();

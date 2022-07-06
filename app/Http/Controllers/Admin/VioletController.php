@@ -9,6 +9,7 @@ use App\Http\Requests\StoreVioletRequest;
 use App\Http\Requests\UpdateVioletRequest;
 use App\Models\Selectioner;
 use App\Http\Requests\Violets\EditRequest;
+use App\Services\UploadService;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Str;
@@ -47,14 +48,12 @@ class VioletController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Request  $request
+     * @param  \App\Http\StoreVioletRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreVioletRequest $request)
     {
-        $item = $request->only([
-            "id", "name", "price",  "selectioner_id"
-            ]);
+        $item = $request->validated();
         $item['name'] = Str::of($item['name'])->trim()->ucfirst();
 
         $violet = Violet::firstOrCreate(
@@ -64,9 +63,11 @@ class VioletController extends Controller
 
         
         $images = $request->file('images');
-        foreach ($images as $image) {
-            $path = $image->store('photos', 'public');
-            $imageUrl = Storage::url($path);
+
+        $uploadService = app(UploadService::class);
+        $imageUrls = $uploadService->uploadFiles($images, 'photos');
+
+        foreach ($imageUrls as $imageUrl) {
             Image::firstOrCreate(
                     ['url' => $imageUrl], 
                     ['violet_id' => $violet->id]
@@ -115,23 +116,29 @@ class VioletController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests  $request
+     * @param  \App\Http\UpdateVioletRequest  $request
      * @param  \App\Models\Violet  $violet
      * @return \Illuminate\Http\Response
      */
-    public function update(EditRequest $request, Violet $violet)
+    public function update(UpdateVioletRequest $request, Violet $violet)
     {
-        $violet->fill($request->validated());
-        
-        $image = $request->file('image');
-        if($image){
-            $path = $image->store('photos', 'public');
-            $imageUrl = Storage::url($path);
-            Image::firstOrCreate(
-                    ['url' => $imageUrl], 
-                    ['violet_id' => $violet->id]
-            );  
+        $violet->fill($request->only("name",
+                                    "price",
+                                    "description" ,
+                                    "selectioner_id"));
+        $images = $request->file('images');
+        if($images){
+            $uploadService = app(UploadService::class);
+            $imageUrls = $uploadService->uploadFiles($images, 'photos');
+
+            foreach ($imageUrls as $imageUrl) {
+                Image::firstOrCreate(
+                        ['url' => $imageUrl], 
+                        ['violet_id' => $violet->id]
+                );            
+            }
         }
+        
         
 
         if($violet->save()){

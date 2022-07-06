@@ -32,7 +32,7 @@
                 <textarea name="description" class="form-control" placeholder="Описание" cols="30" rows="10">{{ $violet->description }}</textarea>
                 </div>
                 <div class="form-group col-6">
-                    <input type="file" class="form-control" name="image">Загрузить фото
+                    <input type="file" class="form-control" name="images" multiple>Загрузить фото
                 </div>
                 <input type="submit" class="btn btn-success" value="Сохранить">
             </form>

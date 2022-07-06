@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\Violet;
 use App\Models\Image;
 
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+
 class ImageController extends Controller
 {
     /**
@@ -80,11 +83,13 @@ class ImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($image)
+    public function destroy($images)
     {
-        
+        $image = Image::find($images);
         try {
-            Image::find($image)->delete();
+            
+            $image->delete();
+
             return response()->json(['status' => 'ok'], 200);
         } catch (Exeption $e) {
             return response()->json(['status' => 'error']);

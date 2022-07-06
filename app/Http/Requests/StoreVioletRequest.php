@@ -13,6 +13,7 @@ class StoreVioletRequest extends FormRequest
      */
     public function authorize()
     {
+        if(\Auth::user()->is_admin) return true;
         return false;
     }
 
@@ -24,7 +25,11 @@ class StoreVioletRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "name" => ["required", "string"],
+            "price" => ["required","numeric" ],
+            "description" => ["required", "string"],
+            "images.*" => ["required", "image"],
+            "selectioner_id" => ["required","numeric" ]
         ];
     }
 }
