@@ -28,7 +28,7 @@ class UpdateVioletRequest extends FormRequest
             "name" => ["required", "string"],
             "price" => ["required","numeric" ],
             "description" => ["required", "string"],
-            "images.*" => ["present", "image"],
+            "images[].*" => ["present", "image"],
             "selectioner_id" => ["required","numeric" ]
         ];
     }

@@ -12,7 +12,7 @@ class Image extends Model
     use HasFactory;
 
     protected $fillable = [
-        "url", "violet_id"
+        "url", "violet_id", "path",
     ];
 
     public function violet()

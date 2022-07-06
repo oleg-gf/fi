@@ -8,15 +8,15 @@ use Illuminate\Support\Facades\Storage;
 
 class UploadService
 {
-    public function uploadFiles(array $images, string $directory): array
+    public function uploadFiles(array $images, string $directory, string $disk): array
     {
          
         foreach ($images as $image) {
-            $path = $image->store($directory, 'public');
-            $imageUrls[] = Storage::url($path);
+            $paths[] = $image->store($directory, $disk);
+            
            
         }
-        return $imageUrls;
+        return $paths;
     }
 
     public function deleteFiles(array $images, string $directory): array
@@ -24,7 +24,7 @@ class UploadService
          
         foreach ($images as $image) {
             $path = $image->store($directory, 'public');
-            $imageUrls[] = Storage::url($path);
+            
            
         }
         return $result;

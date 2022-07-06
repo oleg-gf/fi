@@ -60,17 +60,18 @@ class VioletController extends Controller
                 ['name' => $item['name']], 
                 $item
         );
-
         
         $images = $request->file('images');
-
         $uploadService = app(UploadService::class);
-        $imageUrls = $uploadService->uploadFiles($images, 'photos');
+        $imagePaths = $uploadService->uploadFiles($images, 'photos', 'public');
+        
 
-        foreach ($imageUrls as $imageUrl) {
-            Image::firstOrCreate(
-                    ['url' => $imageUrl], 
-                    ['violet_id' => $violet->id]
+        foreach ($imagePaths as $imagePath) {
+            
+            Image::create(
+                    ['url' => Storage::url($imagePath), 
+                    'violet_id' => $violet->id,
+                    'path' => $imagePath],
             );            
         }
         
@@ -129,12 +130,14 @@ class VioletController extends Controller
         $images = $request->file('images');
         if($images){
             $uploadService = app(UploadService::class);
-            $imageUrls = $uploadService->uploadFiles($images, 'photos');
+            $imagePaths = $uploadService->uploadFiles($images, 'photos', 'public');
 
-            foreach ($imageUrls as $imageUrl) {
-                Image::firstOrCreate(
-                        ['url' => $imageUrl], 
-                        ['violet_id' => $violet->id]
+            foreach ($imagePaths as $imagePath) {
+                
+                Image::create(
+                        ['url' => Storage::url($imagePath), 
+                        'violet_id' => $violet->id,
+                        'path' => $imagePath],
                 );            
             }
         }

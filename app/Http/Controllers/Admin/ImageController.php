@@ -87,7 +87,7 @@ class ImageController extends Controller
     {
         $image = Image::find($images);
         try {
-            
+            Storage::disk('public')->delete($image->path);
             $image->delete();
 
             return response()->json(['status' => 'ok'], 200);
