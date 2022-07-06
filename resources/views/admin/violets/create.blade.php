@@ -4,7 +4,7 @@
 @endsection
 @section('content')
     <div class="row m-2">
-        <b>Создание фиалки</b>
+        <b>Добавление фиалки</b>
     </div>
     <div class="row">
 

@@ -10,7 +10,11 @@ class Selectioner extends Model
 {
     use HasFactory;
 
-    public function violet()
+    protected $fillable = [
+         "name", "surname", "abbreviation"
+    ];
+
+    public function violets()
     {
         return $this->hasMany(Violet::class);
     }

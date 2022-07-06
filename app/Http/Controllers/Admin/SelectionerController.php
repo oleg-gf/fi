@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Selectioner;
+use App\Models\Violet;
+use App\Http\Requests\StoreSelectionerRequest;
+use App\Http\Requests\UpdateSelectionerRequest;
 use Illuminate\Http\Request;
 
 class SelectionerController extends Controller
@@ -15,7 +18,11 @@ class SelectionerController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.selectioners.index', [
+            'violets' => Violet::all(),
+            'selectioners' => Selectioner::paginate(10),
+            
+        ]);
     }
 
     /**
@@ -25,18 +32,18 @@ class SelectionerController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.selectioners.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Requests\StoreSelectionerRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreSelectionerRequest $request)
     {
-        //
+        $selectioner = Selectioner::create($request->validated());
     }
 
     /**
@@ -58,19 +65,26 @@ class SelectionerController extends Controller
      */
     public function edit(Selectioner $selectioner)
     {
-        //
+        return view('admin.selectioners.edit', ['selectioner' => $selectioner]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Requests\UpdateSelectionerRequest  $request
      * @param  \App\Models\Selectioner  $selectioner
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Selectioner $selectioner)
+    public function update(UpdateSelectionerRequest $request, Selectioner $selectioner)
     {
-        //
+        $selectioner->fill($request->validated());
+
+        if($selectioner->save())
+        {
+            return redirect()->route('admin.selectioners.index')
+                   ->with("success", "Запись обновлена"); 
+        }
+        return back()->with("error", "Не удалось обновить запись");
     }
 
     /**

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Violets;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EditRequest extends FormRequest
+class StoreSelectionerRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,10 +26,8 @@ class EditRequest extends FormRequest
     {
         return [
             "name" => ["required", "string"],
-            "price" => ["required","numeric" ],
-            "description" => ["required", "string"],
-            "image" => ["required", "file"],
-            "selectioner_id" => ["required","numeric" ]
+            "surname" => ["required", "string"],
+            "abbreviation" => ["required", "unique:App\Models\Selectioner"]
         ];
     }
 }
