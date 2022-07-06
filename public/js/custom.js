@@ -61,7 +61,7 @@ $(document).ready(function() {
           dataType: "json",
           success: function (data) {
             console.log( data.status );
-            $(`[name=${image_id}]`).empty();
+            $(`[name=${image_id}]`).remove();
           },
           error: (xhr, ajaxOptions, thrownError) => {
 

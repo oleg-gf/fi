@@ -13,51 +13,34 @@
         
         </div>
     </div>
-    <div class="table-responsive">
+    
         @include('inc.messages')
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>#ID</th>
-                    <th>Селекционер</th>
-                    <th>Имя</th>
-                    <th>Фамилия</th>
-                    <th>Фиалки</th>
-                    
-                    
-                </tr>
-            </thead>  
-            <tbody>
-                @forelse ($selectioners as $selectioner)
-               
-                    <tr>
-                        <td>{{ $selectioner->id }}</td>
 
-                        <td>{{ $selectioner->abbreviation }}</td>
-                        <td>{{ $selectioner->name }}</td>
-                        <td>{{ $selectioner->surname }}</td>
-                        <td>
-                            @forelse ($selectioner->violets as $violet)
-                                {{ $violet->name }}<br>
-                            @empty
-                                
-                            @endforelse
-                        </td>
-                        <td><a href="{{ route('admin.selectioners.edit', ['selectioner' => $selectioner]) }}">
-                            Редактировать</a>  
-                        </td>
-                   </tr>
+                @forelse ($selectioners as $selectioner)
+                <div class="d-flex justify-content-start pt-3 pb-2 mb-3 border-bottom">
+                    <div class="col-12 col-sm-6">
+                        <b>{{ $selectioner->id }}  {{ $selectioner->abbreviation }}   {{ $selectioner->name }} {{ $selectioner->surname }}</b>
+                    </div>
+                    <div class="col-12 col-sm-3">
+                        @forelse ($selectioner->violets as $violet)
+                            {{ $violet->name }}<br>
+                        @empty
                             
+                        @endforelse
+                    </div>    
+                    <div class="col-12 col-sm-3">
+                        <a href="{{ route('admin.selectioners.edit', ['selectioner' => $selectioner]) }}">
+                                Редактировать</a>
+                    </div>            
+                          
+                     
+                </div>            
                 @empty
-                    <tr>
-                        <td>Нема</td>
-                    </tr>
+                   Нема
                 @endforelse        
                 
-                
-            </tbody>  
-        </table>
-    </div>
+
+    
     <div>
         {{ $selectioners->links() }}
     </div>
