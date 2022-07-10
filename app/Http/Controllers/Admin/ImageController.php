@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Violet;
 use App\Models\Image;
+use App\Services\UploadService;
 
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
+
 
 class ImageController extends Controller
 {
@@ -83,16 +83,18 @@ class ImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($images)
+    public function destroy($id)
     {
-        $image = Image::find($images);
+        $image = Image::find($id);
         $path = $image->path;
         $result = ['imgDelStatus' => 'error', 'fileDelStatus' => 'error'];
+
+        $uploadService = app(UploadService::class);
 
         if($image->delete())
         {
             $result['imgDelStatus'] = 'ok';
-            if(Storage::disk('public')->delete($path))
+            if($uploadService->deleteFile($path, 'public'))
             {
                 $result['fileDelStatus'] = 'ok';
             }
