@@ -65,6 +65,9 @@
                             </div>
                         </div>
                     </form>
+
+                    <a class="btn  btn-primary" href="{{ route('auth.redirect', ['network' => 'vkontakte']) }}">Вход через VK</a>
+
                 </div>
             </div>
         </div>

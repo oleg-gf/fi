@@ -15,7 +15,7 @@ class AddPathFieldInImagesTable extends Migration
     {
         Schema::table('images', function (Blueprint $table) {
             $table->string('path');
-            
+
         });
     }
 
@@ -27,7 +27,7 @@ class AddPathFieldInImagesTable extends Migration
     public function down()
     {
         Schema::table('images', function (Blueprint $table) {
-            //
+            $table->dropColumn('path');
         });
     }
 }
