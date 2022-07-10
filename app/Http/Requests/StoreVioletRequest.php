@@ -25,7 +25,7 @@ class StoreVioletRequest extends FormRequest
     public function rules()
     {
         return [
-            "name" => ["required", "string"],
+            "name" => ["required", "unique:App\Models\Violet"],
             "price" => ["required","numeric" ],
             "description" => ["required", "string"],
             "images[].*" => ["required", "image"],

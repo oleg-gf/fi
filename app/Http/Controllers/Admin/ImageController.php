@@ -86,13 +86,18 @@ class ImageController extends Controller
     public function destroy($images)
     {
         $image = Image::find($images);
-        try {
-            Storage::disk('public')->delete($image->path);
-            $image->delete();
+        $path = $image->path;
+        $result = ['imgDelStatus' => 'error', 'fileDelStatus' => 'error'];
 
-            return response()->json(['status' => 'ok'], 200);
-        } catch (Exeption $e) {
-            return response()->json(['status' => 'error']);
+        if($image->delete())
+        {
+            $result['imgDelStatus'] = 'ok';
+            if(Storage::disk('public')->delete($path))
+            {
+                $result['fileDelStatus'] = 'ok';
+            }
+            return response()->json($result, 200);
         }
+        return response()->json($result, 400);
     }
 }

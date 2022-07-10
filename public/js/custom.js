@@ -4,18 +4,18 @@ const swiper = new Swiper('.swiper', {
     // Optional parameters
     direction: 'horizontal',
     loop: true,
-  
+
     // If we need pagination
     pagination: {
       el: '.swiper-pagination',
     },
-  
+
     // Navigation arrows
     navigation: {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
     },
-  
+
     // And if we need scrollbar
     scrollbar: {
       el: '.swiper-scrollbar',
@@ -39,18 +39,18 @@ $(document).ready(function() {
   $(".background").click(function () {
     $(".imagedel-modal").hide();
     $(".background").hide();
-    
+
   });
   $(".no").click(function () {
     $(".imagedel-modal").hide();
     $(".background").hide();
-   
-  });  
+
+  });
   $(".yes").click(function () {
     $(".imagedel-modal").hide();
     $(".background").hide();
         let url = 'http://' + window.location.host + `/admin/images/` + image_id;
-    
+
         $.ajax({
           method: "DELETE",
           url: url,
@@ -60,7 +60,7 @@ $(document).ready(function() {
 
           dataType: "json",
           success: function (data) {
-            console.log( data.status );
+            console.log( data );
             $(`[name=${image_id}]`).remove();
           },
           error: (xhr, ajaxOptions, thrownError) => {
@@ -70,15 +70,15 @@ $(document).ready(function() {
 
           },
           statusCode: {
-            200: function () { 
+            200: function () {
               console.log( "Ok" );
             },
-            400: function () { 
+            400: function () {
               console.log( "notOk" );
-            }      
-          }  
+            }
+          }
         });
 
 
-  });  
+  });
 });

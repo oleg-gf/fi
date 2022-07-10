@@ -54,27 +54,27 @@ class VioletController extends Controller
     public function store(StoreVioletRequest $request)
     {
         $item = $request->validated();
-        $item['name'] = Str::of($item['name'])->trim()->ucfirst();
+        //$item['name'] = Str::of($item['name'])->trim()->ucfirst();
 
         $violet = Violet::firstOrCreate(
-                ['name' => $item['name']], 
+                ['name' => $item['name']],
                 $item
         );
-        
+
         $images = $request->file('images');
         $uploadService = app(UploadService::class);
         $imagePaths = $uploadService->uploadFiles($images, 'photos', 'public');
-        
+
 
         foreach ($imagePaths as $imagePath) {
-            
+
             Image::create(
-                    ['url' => Storage::url($imagePath), 
+                    ['url' => Storage::url($imagePath),
                     'violet_id' => $violet->id,
                     'path' => $imagePath],
-            );            
+            );
         }
-        
+
         if ($violet) {
             return redirect()->route('admin.violets.index')
             ->with('success', 'Фиалка добавлена');
@@ -133,20 +133,20 @@ class VioletController extends Controller
             $imagePaths = $uploadService->uploadFiles($images, 'photos', 'public');
 
             foreach ($imagePaths as $imagePath) {
-                
+
                 Image::create(
-                        ['url' => Storage::url($imagePath), 
+                        ['url' => Storage::url($imagePath),
                         'violet_id' => $violet->id,
                         'path' => $imagePath],
-                );            
+                );
             }
         }
-        
-        
+
+
 
         if($violet->save()){
             return redirect()->route('admin.violets.index')
-                   ->with("success", "Запись обновлена"); 
+                   ->with("success", "Запись обновлена");
         }
         return back()->with("error", "Не удалось обновить запись");
     }
@@ -159,7 +159,7 @@ class VioletController extends Controller
      */
     public function destroy(Violet $violet)
     {
-        
+
     }
 
 
@@ -182,5 +182,5 @@ class VioletController extends Controller
         return view('items.selform', [
             'item' => $item
         ]);
-    }    
+    }
 }
