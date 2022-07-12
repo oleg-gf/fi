@@ -49,4 +49,4 @@ Route::group(['middleware' => 'guest'], function () {
     Route::get('/auth/{network}/callback', [SocialController::class, 'callback'])
     ->name('auth.callback');
 });
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [VioletController::class, 'index'])->name('home');

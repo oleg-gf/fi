@@ -7,33 +7,21 @@
         <h1 class="h2">Фиалки</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
         <div class="btn-group me-2">
-            
+
         <a href="{{ route('admin.violets.create')}}" class="btn btn-sm btn-outline-secondary">Добавить фиалку</a>
         </div>
-        
+
         </div>
     </div>
-    <div class="table-responsive">
+
         @include('inc.messages')
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>#ID</th>
-                    <th>Изображение</th>
-                    <th>Селекционер</th>
-                    <th>Название</th>
-                    <th>Цена</th>
-                    <th>Описание</th>
-                    <th>Дата редактирования</th>
-                    
-                </tr>
-            </thead>  
-            <tbody>
-                @forelse ($violets as $violet)
-               
-                    <tr>
-                        <td>{{ $violet->id }}</td>
-                        <td class="table-image-cell">
+         @forelse ($violets as $violet)
+        <div class="row d-flex justify-content-start pt-3 pb-2 mb-3 border-bottom">
+
+            <div class="col-12 col-sm-3 table-image-cell">
+
+
+
                             @if ($violet->image->count() > 1)
                             <!-- Slider main container -->
                             <div class="swiper">
@@ -46,39 +34,39 @@
                                 </div>
                                 <!-- If we need pagination -->
                                 <div class="swiper-pagination"></div>
-                            
+
                                 <!-- If we need navigation buttons -->
                                 <div class="swiper-button-prev"></div>
                                 <div class="swiper-button-next"></div>
-                            
+
                                 <!-- If we need scrollbar -->
                                 <div class="swiper-scrollbar"></div>
                             </div>
                             @elseif ($violet->image->count() == 1)
                                 <div><img src="{{ $violet->image->first()->url }}" alt=""></div>
-                            
+
                             @endif
-                        </td>
-                        <td>{{ $violet->selectioner->abbreviation }}</td>
-                        <td>{{ $violet->name }}</td>
-                        <td>{{ $violet->price }}</td>
-                        <td>{{ $violet->description }}</td>
-                        <td>@if($violet->updated_at) {{ $violet->updated_at->format('d-m-Y H:i') }} @endif</td>
-                        <td><a href="{{ route('admin.violets.edit', ['violet' => $violet]) }}">
-                            Редактировать</a>  
-                        </td>
-                   </tr>
-                            
-                @empty
-                    <tr>
-                        <td>Нема</td>
-                    </tr>
-                        
-                @endforelse
-                
-            </tbody>  
-        </table>
-    </div>
+            </div>
+            <div class="col-12 col-sm-6 p-3 violet-cell">
+                        <div>№ {{ $violet->id }}</div>
+                        <div>{{ $violet->selectioner->abbreviation }}-{{ $violet->name }}</div>
+                        <div>{{ $violet->price }}</div>
+                        <div>{{ $violet->description }}</div>
+                        <div><a href="{{ route('admin.violets.edit', ['violet' => $violet]) }}" class="btn btn-primary">
+                            Редактировать</a>
+                        </div>
+            </div>
+        </div>
+
+
+
+        @empty
+            Нема
+
+        @endforelse
+
+
+
     <div>
         {{ $violets->links() }}
     </div>

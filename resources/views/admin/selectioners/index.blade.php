@@ -7,13 +7,13 @@
         <h1 class="h2">Селекционеры</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
         <div class="btn-group me-2">
-            
+
         <a href="{{ route('admin.selectioners.create')}}" class="btn btn-sm btn-outline-secondary">Добавить селекционера</a>
         </div>
-        
+
         </div>
     </div>
-    
+
         @include('inc.messages')
 
                 @forelse ($selectioners as $selectioner)
@@ -25,22 +25,20 @@
                         @forelse ($selectioner->violets as $violet)
                             {{ $violet->name }}<br>
                         @empty
-                            
+
                         @endforelse
-                    </div>    
+                    </div>
                     <div class="col-12 col-sm-3">
                         <a href="{{ route('admin.selectioners.edit', ['selectioner' => $selectioner]) }}">
                                 Редактировать</a>
-                    </div>            
-                          
-                     
-                </div>            
+                    </div>
+                </div>
                 @empty
                    Нема
-                @endforelse        
-                
+                @endforelse
 
-    
+
+
     <div>
         {{ $selectioners->links() }}
     </div>

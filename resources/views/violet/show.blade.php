@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('title')
     {{ $violet->name }}
-@endsection   
+@endsection
 @section('content')
 <div class="row mt-3">
     <div class="col-6 mr-2">
@@ -17,26 +17,34 @@
             </div>
             <!-- If we need pagination -->
             <div class="swiper-pagination"></div>
-        
+
             <!-- If we need navigation buttons -->
             <div class="swiper-button-prev"></div>
             <div class="swiper-button-next"></div>
-        
+
             <!-- If we need scrollbar -->
             <div class="swiper-scrollbar"></div>
         </div>
         @else
             <div><img src="{{ $violet->image->first()->url }}" alt=""></div>
         @endif
-        
+
     </div>
-    <div class="col-6">
-        <h1>{{ $selectioner->abbreviation }} {{ $violet->name }}</h1> 
-        <br>
-        Цена: {{ $violet->price }}р.
-        <br>
-        {{ $violet->description }}
-    </div>    
+    <div class="col-6 violet-cell">
+        <div>
+            <div>№ {{ $violet->id }}</div>
+            <div><h1>{{ $selectioner->abbreviation }} {{ $violet->name }}</h1></div>
+
+            <div> Цена: {{ $violet->price }}р.</div>
+
+            <div>{{ $violet->description }}</div>
+        </div>
+
+        <div><a href="{{ route('home') }}" class="btn btn-primary">
+            К списку</a>
+        </div>
+    </div>
+
 </div>
-     
+
 @endsection

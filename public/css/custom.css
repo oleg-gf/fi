@@ -4,7 +4,7 @@ img {
 }
 
 .table-image-cell {
-    max-width: 300px;
+    max-width: 150px;
 }
 
 .image {
@@ -19,6 +19,13 @@ img {
     right: 0;
 
 }
+.violet-cell{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 24px;
+    font-weight: 500;
+}
 .cl-btn-2 {
     margin: 20px;
     display: flex;
@@ -26,7 +33,7 @@ img {
 }
 .cl-btn-2 div {
     cursor: pointer;
-    position: relative;  
+    position: relative;
     height: 58px;
     width: 40px;
 }
@@ -59,7 +66,7 @@ img {
     font-weight: bold;
     text-transform: uppercase;
     transition: all .3s ease-in;
-    opacity: 0; 
+    opacity: 0;
 }
 .cl-btn-2 div:hover .leftright {
     transform: rotate(-45deg);
@@ -91,8 +98,8 @@ img {
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 10;   
-    background-color: azure; 
+    z-index: 10;
+    background-color: azure;
     border: 2px solid burlywood;
     border-radius: 10px;
     padding: 30px;
