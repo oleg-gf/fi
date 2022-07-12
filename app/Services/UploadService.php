@@ -5,14 +5,33 @@ namespace App\Services;
 use Illuminate\Http\File;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use ImageFile;
 
 class UploadService
 {
-    public function uploadFiles(array $images, string $directory, string $disk): array
+    public function uploadImagesWM(array $images, string $directory, string $disk): array
     {
 
         foreach ($images as $image) {
-            $paths[] = $image->store($directory, $disk);
+            $imagePath = $image->store($directory, $disk);
+
+            $imgFile = ImageFile::make(Storage::disk($disk)->path($imagePath));
+            $options['imgWidth']  = $imgFile->width() - 120;
+            $options['imgHeight'] = $imgFile->height() - 80;
+
+            $imgFile->text('Коллекция Натальи Чумановой',
+                            $options['imgWidth'],
+                            $options['imgHeight'],
+                            function($font) {
+                                $font->file(Storage::disk('public')->path('fonts/Miama-Nueva.ttf'));
+                                $font->size(35);
+                                $font->color([255, 255, 255, 0.5]);
+                                $font->align('right');
+                                $font->valign('center');
+                            })
+                            ->save();
+
+            $paths[] = $imagePath;
 
 
         }
@@ -30,7 +49,7 @@ class UploadService
     {
 
         foreach ($images as $image) {
-            $path = $image->store($directory, 'public');
+
 
 
         }

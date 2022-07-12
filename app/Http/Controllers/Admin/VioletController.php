@@ -54,17 +54,17 @@ class VioletController extends Controller
     public function store(StoreVioletRequest $request)
     {
         $item = $request->validated();
-        //$item['name'] = Str::of($item['name'])->trim()->ucfirst();
+
+
+        $images = $request->file('images');
+        $uploadService = app(UploadService::class);
+        $imagePaths = $uploadService->uploadImagesWM($images, 'photos', 'public');
+
 
         $violet = Violet::firstOrCreate(
                 ['name' => $item['name']],
                 $item
         );
-
-        $images = $request->file('images');
-        $uploadService = app(UploadService::class);
-        $imagePaths = $uploadService->uploadFiles($images, 'photos', 'public');
-
 
         foreach ($imagePaths as $imagePath) {
 
@@ -130,7 +130,7 @@ class VioletController extends Controller
         $images = $request->file('images');
         if($images){
             $uploadService = app(UploadService::class);
-            $imagePaths = $uploadService->uploadFiles($images, 'photos', 'public');
+            $imagePaths = $uploadService->uploadImagesWM($images, 'photos', 'public');
 
             foreach ($imagePaths as $imagePath) {
 

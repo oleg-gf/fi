@@ -28,7 +28,7 @@ class StoreVioletRequest extends FormRequest
             "name" => ["required", "unique:App\Models\Violet"],
             "price" => ["required","numeric" ],
             "description" => ["required", "string"],
-            "images[].*" => ["required", "image"],
+            "images[].*" => ['required|image|mimes:jpg,jpeg,png,gif,svg|max:4096'],
             "selectioner_id" => ["required","numeric" ]
         ];
     }
