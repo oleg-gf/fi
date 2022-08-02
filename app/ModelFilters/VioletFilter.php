@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\ModelFilters;
 
@@ -13,4 +13,9 @@ class VioletFilter extends ModelFilter
     * @var array
     */
     public $relations = [];
+
+    public function selectioner($id)
+    {
+        return $this->where('selectioner_id', $id);
+    }
 }

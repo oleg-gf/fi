@@ -8,7 +8,8 @@ use App\Models\Image;
 use App\Models\Selectioner;
 use App\Http\Requests\StoreVioletRequest;
 use App\Http\Requests\UpdateVioletRequest;
-use App\Http\Controllers\Request;
+use App\Http\Requests\IndexVioletRequest;
+
 
 class VioletController extends Controller
 {
@@ -17,12 +18,13 @@ class VioletController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request = NULL)
+    public function index(IndexVioletRequest $request)
     {
+        //dd($request->selectioner_id);
         return view('violet.index', [
-            'violets' => Violet::paginate(10),
+            'violets' => Violet::filter($request->all())->paginate(10),
             'selectioners' => Selectioner::all(),
-
+            'get_selectioner_id' => $request->selectioner_id,
         ]);
     }
 
