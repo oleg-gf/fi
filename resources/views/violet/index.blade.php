@@ -3,6 +3,24 @@
 Фиалки @parent
 @endsection
 @section('content')
+<div class="main">
+    <div class="violets_sidebar p-2">
+        <div class="container"></div>
+        <h3 class="h3">Селекционеры</h3>
+        @forelse ($selectioners as $selectioner)
+            <div class="row d-flex justify-content-start p-2 mb-3 border-bottom">
+                <div class="col-12">
+                    <p><input type="checkbox">   {{ $selectioner->abbreviation }}-{{ $selectioner->name }} {{ $selectioner->surname }}</p>
+                </div>
+            </div>
+        @empty
+
+        @endforelse
+        </div>
+    </div>
+<div class="violets_wrapper">
+<div class="container">
+
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Фиалки</h1>
 
@@ -14,7 +32,7 @@
 
                 <div class="row d-flex justify-content-start pt-3 pb-2 mb-3 border-bottom">
 
-                    <div class="col-12 col-sm-3 table-image-cell">
+                    <div class="col-12 col-sm-5 table-image-cell">
 
 
 
@@ -43,7 +61,7 @@
 
                                     @endif
                     </div>
-                    <div class="col-12 col-sm-6 p-3 violet-cell">
+                    <div class="col-12 col-sm-7 p-3 violet-cell">
                                 <div>№ {{ $violet->id }}</div>
                                 <div>{{ $violet->selectioner->abbreviation }}-{{ $violet->name }}</div>
                                 <div>{{ $violet->price }}</div>
@@ -63,4 +81,7 @@
     <div>
         {{ $violets->links() }}
     </div>
+</div> <!-- container  -->
+</div>
+</div> <!-- main  -->
 @endsection

@@ -8,12 +8,11 @@
     <title>@section('title')@show</title>
       <!-- Bootstrap core CSS -->
       <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">
-      
+
 <!-- Custom styles for this template -->
 <link href="{{ asset('css/dashboard.css')}}" rel="stylesheet">
 <link href="{{ asset('css/tailwind.css')}}" rel="stylesheet">
 
-<link href="{{ asset('css/custom.css')}}" rel="stylesheet">
 <link
   rel="stylesheet"
   href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
@@ -34,6 +33,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    
+<link href="{{ asset('css/custom.css')}}" rel="stylesheet">
 
 </head>
 <body>
@@ -78,7 +79,7 @@
                                 @if (Auth::user()->is_admin)
                                     <a class="dropdown-item" href="{{ route('admin.index') }}">
                                         Админка
-                                    </a>                
+                                    </a>
                                 @endif
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
@@ -98,9 +99,8 @@
     </nav>
 
 </div>
-    <div class="container">
         @yield('content')
-    </div>
+
 
     <script src="{{ asset('js/jquery-3.5.1.min.js')}}"></script>
     <script src="{{ asset('js/bootstrap.bundle.min.js')}}"></script>

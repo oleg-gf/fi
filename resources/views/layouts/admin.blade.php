@@ -3,7 +3,6 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@section('title') - Admin's panel @show</title>
 
     <!-- Bootstrap core CSS -->
@@ -25,12 +24,12 @@
       }
     </style>
 
-    
+
     <!-- Custom styles for this template -->
     <link href="{{ asset('css/dashboard.css')}}" rel="stylesheet">
-    
+
     <link href="{{ asset('css/tailwind.min.css')}}" rel="stylesheet">
-    
+
     <link href="{{ asset('css/custom.css')}}" rel="stylesheet">
 
     <link
@@ -56,7 +55,7 @@
 
   </head>
   <body>
-    
+
 <x-admin.header></x-admin.header>
 
 <div class="container-fluid">
@@ -79,8 +78,8 @@
   <script src="{{ asset('js/bootstrap.bundle.min.js')}}"></script>
   <script src="{{ asset('js/bootstrap.min.js')}}"></script>
   <script src="{{ asset('js/custom.js')}}"></script>
-    
+
     <script src="{{ asset('js/dashboard.js')}}"></script>
-     
+
   </body>
 </html>

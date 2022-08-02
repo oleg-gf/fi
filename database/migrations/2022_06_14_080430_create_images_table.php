@@ -17,8 +17,8 @@ class CreateImagesTable extends Migration
             $table->id();
             $table->string('url');
             $table->foreignId('violet_id')
-            ->constrained()
-            ->cascadeOnDelete();
+            ->cascadeOnDelete()
+            ->constrained();
             $table->timestamps();
         });
     }
@@ -34,7 +34,7 @@ class CreateImagesTable extends Migration
         Schema::table('images', function (Blueprint $table) {
             $table->dropForeign('violet_id')
             ->dropColumn('violet_id');
-            
+
         });
     }
 }

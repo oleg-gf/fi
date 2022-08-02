@@ -68,6 +68,6 @@
 
 
     <div>
-        {{ $violets->links() }}
+       
     </div>
 @endsection
