@@ -79,7 +79,7 @@
 
 
     <div>
-        {{ $violets->links() }}
+        {{ $violets->withQueryString()->links() }}
     </div>
 </div> <!-- container  -->
 </div>
