@@ -16,6 +16,9 @@ class VioletFilter extends ModelFilter
 
     public function selectioner($id)
     {
-        return $this->where('selectioner_id', $id);
+        if($id){
+            return $this->where('selectioner_id', $id);
+        }
+        return $this;
     }
 }

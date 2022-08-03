@@ -13,16 +13,21 @@ use App\Http\Requests\IndexVioletRequest;
 
 class VioletController extends Controller
 {
+    protected $violets;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index(IndexVioletRequest $request)
     {
+
         //dd($request->selectioner_id);
+
+        $violets = Violet::filter($request->all())->paginate(10);
         return view('violet.index', [
-            'violets' => Violet::filter($request->all())->paginate(10),
+            'violets' => $violets,
             'selectioners' => Selectioner::all(),
             'get_selectioner_id' => $request->selectioner_id,
         ]);

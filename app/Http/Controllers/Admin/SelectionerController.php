@@ -21,7 +21,7 @@ class SelectionerController extends Controller
         return view('admin.selectioners.index', [
             'violets' => Violet::all(),
             'selectioners' => Selectioner::paginate(10),
-            
+
         ]);
     }
 
@@ -44,6 +44,11 @@ class SelectionerController extends Controller
     public function store(StoreSelectionerRequest $request)
     {
         $selectioner = Selectioner::create($request->validated());
+        return view('admin.selectioners.index', [
+            'violets' => Violet::all(),
+            'selectioners' => Selectioner::paginate(10),
+
+        ]);
     }
 
     /**
@@ -82,7 +87,7 @@ class SelectionerController extends Controller
         if($selectioner->save())
         {
             return redirect()->route('admin.selectioners.index')
-                   ->with("success", "Запись обновлена"); 
+                   ->with("success", "Запись обновлена");
         }
         return back()->with("error", "Не удалось обновить запись");
     }

@@ -3,23 +3,76 @@
 Фиалки @parent
 @endsection
 @section('content')
-<div class="main">
-    <div class="violets_sidebar p-2">
+    <div class="violets_sidebar_600 p-3">
         <div class="container"></div>
         <h3 class="h3">Селекционеры</h3>
-                    {!! Form::open(['route' => 'home', 'method' => 'get']) !!}
-                    {!! Form::token() !!}
-        @forelse ($selectioners as $selectioner)
+
+        <form action="{{ route('home')}}" method="GET">
             <div class="row d-flex justify-content-start p-2 mb-3 border-bottom">
                 <div class="col-12">
-                    {!! Form::checkbox('selectioner_id', $selectioner->id) !!}  {{ $selectioner->abbreviation }}-{{ $selectioner->name }} {{ $selectioner->surname }}
+                    <input type=radio
+                        name="selectioner_id"
+                        id="selectioner_id-0"
+                        value="0">
+                    <label for="selectioner_id-0" class="selectioner_id_0-label">  Все</label>
                 </div>
             </div>
-        @empty
+            @forelse ($selectioners as $selectioner)
+            <div class="row d-flex justify-content-start p-2 mb-3 border-bottom">
+                <div class="col-12">
+                <input type=radio
+                    name="selectioner_id"
+                    id="selectioner_id-{{ $selectioner->id }}"
+                    value="{{ $selectioner->id }}"
+                    @if ($selectioner->id == $get_selectioner_id)
+                        checked
+                    @endif>
+                    <label for="selectioner_id-{{ $selectioner->id }}"> {{ $selectioner->abbreviation }}-{{ $selectioner->name }} {{ $selectioner->surname }}</label>
+                </div>
+            </div>
+            @empty
 
-        @endforelse
-                    {!! Form::submit('Click Me!') !!}
-                    {!! Form::close() !!}
+            @endforelse
+            <input type="submit" class="btn btn-primary" value="Применить">
+        </form>
+        </div>
+    </div>
+</nav>
+
+</div>
+<div class="main">
+    <div class="violets_sidebar p-3">
+        <div class="container"></div>
+        <h3 class="h3">Селекционеры</h3>
+
+        <form action="{{ route('home')}}" method="GET">
+            <div class="row d-flex justify-content-start p-2 mb-3 border-bottom">
+                <div class="col-12">
+                    <input type=radio
+                        name="selectioner_id"
+                        id="selectioner_id-0"
+                        value="0">
+                    <label for="selectioner_id-0" class="selectioner_id_0-label">  Все</label>
+                </div>
+            </div>
+            @forelse ($selectioners as $selectioner)
+            <div class="row d-flex justify-content-start p-2 mb-3 border-bottom">
+                <div class="col-12">
+                <input type=radio
+                    name="selectioner_id"
+                    id="selectioner_id-{{ $selectioner->id }}"
+                    value="{{ $selectioner->id }}"
+                    @if ($selectioner->id == $get_selectioner_id)
+                        checked
+                    @endif>
+                    <label for="selectioner_id-{{ $selectioner->id }}"> {{ $selectioner->abbreviation }}-{{ $selectioner->name }} {{ $selectioner->surname }}</label>
+                </div>
+            </div>
+            @empty
+
+            @endforelse
+            <input type="submit" class="btn btn-primary" value="Применить">
+        </form>
         </div>
     </div>
 <div class="violets_wrapper">
@@ -27,7 +80,6 @@
 
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Фиалки</h1>
-
     </div>
 
         @include('inc.messages')

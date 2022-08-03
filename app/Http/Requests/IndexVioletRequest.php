@@ -22,8 +22,8 @@ class IndexVioletRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            "selectioner_id" => ["present"]
+        return[
+            //
         ];
     }
 }

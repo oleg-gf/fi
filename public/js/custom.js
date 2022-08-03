@@ -28,7 +28,11 @@ const swiper = new Swiper('.swiper', {
 
   });
 $(document).ready(function() {
+
+    let window_size = window.matchMedia('(max-width: 600px)');
+
     let image_id = 0;
+
   $(".imagedel-button").click(function () {
     $(".imagedel-modal").show();
     $(".background").show();
@@ -79,4 +83,9 @@ $(document).ready(function() {
 
 
   });
+$(".navbar-toggler").click(function() {
+    if (window_size.matches) {
+        $(".violets_sidebar_600").show();
+    }
+});
 });
