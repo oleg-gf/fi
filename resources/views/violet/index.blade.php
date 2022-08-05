@@ -10,16 +10,18 @@
         <form action="{{ route('home')}}" method="GET">
             <div class="row d-flex justify-content-start p-2 mb-3 border-bottom">
                 <div class="col-12">
+                    <label class="selectioner_id_0-label">
                     <input type=radio
                         name="selectioner_id"
                         id="selectioner_id-0"
                         value="0">
-                    <label for="selectioner_id-0" class="selectioner_id_0-label">  Все</label>
+                      Все</label>
                 </div>
             </div>
             @forelse ($selectioners as $selectioner)
             <div class="row d-flex justify-content-start p-2 mb-3 border-bottom">
                 <div class="col-12">
+                <label>
                 <input type=radio
                     name="selectioner_id"
                     id="selectioner_id-{{ $selectioner->id }}"
@@ -27,7 +29,7 @@
                     @if ($selectioner->id == $get_selectioner_id)
                         checked
                     @endif>
-                    <label for="selectioner_id-{{ $selectioner->id }}"> {{ $selectioner->abbreviation }}-{{ $selectioner->name }} {{ $selectioner->surname }}</label>
+                     {{ $selectioner->abbreviation }}-{{ $selectioner->name }} {{ $selectioner->surname }}</label>
                 </div>
             </div>
             @empty
@@ -48,24 +50,27 @@
         <form action="{{ route('home')}}" method="GET">
             <div class="row d-flex justify-content-start p-2 mb-3 border-bottom">
                 <div class="col-12">
+                    <label class="selectioner_id_0-label">
                     <input type=radio
                         name="selectioner_id"
                         id="selectioner_id-0"
                         value="0">
-                    <label for="selectioner_id-0" class="selectioner_id_0-label">  Все</label>
+                      Все</label>
                 </div>
             </div>
             @forelse ($selectioners as $selectioner)
             <div class="row d-flex justify-content-start p-2 mb-3 border-bottom">
                 <div class="col-12">
-                <input type=radio
+                <label>
+                    <input type=radio
                     name="selectioner_id"
                     id="selectioner_id-{{ $selectioner->id }}"
                     value="{{ $selectioner->id }}"
                     @if ($selectioner->id == $get_selectioner_id)
                         checked
                     @endif>
-                    <label for="selectioner_id-{{ $selectioner->id }}"> {{ $selectioner->abbreviation }}-{{ $selectioner->name }} {{ $selectioner->surname }}</label>
+                     {{ $selectioner->abbreviation }}-{{ $selectioner->name }} {{ $selectioner->surname }}
+                </label>
                 </div>
             </div>
             @empty
