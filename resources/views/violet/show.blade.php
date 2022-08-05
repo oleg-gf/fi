@@ -10,12 +10,14 @@
         <div class="col-6 mr-2">
             @if ($violet->image->count() > 1)
                 <!-- Slider main container -->
-                <div class="swiper">
+                <div class="swiper lightbox">
                     <!-- Additional required wrapper -->
                     <div class="swiper-wrapper">
                         <!-- Slides -->
                         @foreach ($violet->image as $image)
-                            <div class="swiper-slide"><img src="{{ $image->url }}" alt=""></div>
+                            <div class="swiper-slide">
+                                <a href="{{ $image->url }}"><img src="{{ $image->url }}" alt=""></a>
+                            </div>
                         @endforeach
                     </div>
                     <!-- If we need pagination -->
@@ -29,7 +31,11 @@
                     <div class="swiper-scrollbar"></div>
                 </div>
             @else
-                <div><img src="{{ $violet->image->first()->url }}" alt=""></div>
+                <div class="lightbox">
+                    <a href="{{ $violet->image->first()->url }}">
+                        <img src="{{ $violet->image->first()->url }}" alt="">
+                    </a>
+                </div>
             @endif
 
         </div>

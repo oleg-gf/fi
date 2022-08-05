@@ -31,13 +31,8 @@
     <link href="{{ asset('css/tailwind.min.css')}}" rel="stylesheet">
 
     <link href="{{ asset('css/custom.css')}}" rel="stylesheet">
-
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
-    />
-
-    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <link href="{{ asset('css/magnific-popup.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('css/swiper-bundle.min.css')}}" rel="stylesheet" type="text/css"/>
 
         <!-- AUTH -->
     <!-- CSRF Token -->
@@ -77,6 +72,8 @@
 
   <script src="{{ asset('js/bootstrap.bundle.min.js')}}"></script>
   <script src="{{ asset('js/bootstrap.min.js')}}"></script>
+  <script src="{{ asset('js/swiper-bundle.min.js')}}"></script>
+  <script src="{{ asset('js/jquery.magnific-popup.min.js')}}"></script>
   <script src="{{ asset('js/custom.js')}}"></script>
 
     <script src="{{ asset('js/dashboard.js')}}"></script>

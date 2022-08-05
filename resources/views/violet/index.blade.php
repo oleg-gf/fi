@@ -100,7 +100,7 @@
                                         <!-- Slides -->
                                             @foreach ($violet->image as $image)
                                                 <div class="swiper-slide">
-                                                    <a href="{{ $image->url }}" class="swipebox"><img src="{{ $image->url }}" alt=""></a>
+                                                    <a href="{{ $image->url }}"><img src="{{ $image->url }}" alt=""></a>
                                                 </div>
                                             @endforeach
                                         </div>
@@ -116,7 +116,7 @@
                                     </div>
                                     @elseif ($violet->image->count() == 1)
                                         <div class="lightbox">
-                                            <a href="{{ $violet->image->first()->url }}" class="swipebox">
+                                            <a href="{{ $violet->image->first()->url }}">
                                                 <img src="{{ $violet->image->first()->url }}" alt="">
                                             </a>
                                         </div>
