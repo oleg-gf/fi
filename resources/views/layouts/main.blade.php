@@ -12,7 +12,7 @@
 <!-- Custom styles for this template -->
 <link href="{{ asset('css/dashboard.css')}}" rel="stylesheet">
 <link href="{{ asset('css/tailwind.css')}}" rel="stylesheet">
-
+<link href="{{ asset('css/magnific-popup.css')}}" rel="stylesheet" type="text/css"/>
 <link
   rel="stylesheet"
   href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
@@ -103,6 +103,9 @@
     <script src="{{ asset('js/jquery-3.5.1.min.js')}}"></script>
     <script src="{{ asset('js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{ asset('js/bootstrap.min.js')}}"></script>
+
+    <script src="{{ asset('js/jquery.magnific-popup.min.js')}}"></script>
     <script src="{{ asset('js/custom.js')}}"></script>
+
 </body>
 </html>

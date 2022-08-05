@@ -3,6 +3,9 @@
     {{ $violet->name }}
 @endsection
 @section('content')
+</nav>
+
+</div>
     <div class="row mt-3">
         <div class="col-6 mr-2">
             @if ($violet->image->count() > 1)
@@ -42,7 +45,7 @@
                 <div>{{ $violet->description }}</div>
             </div>
 
-            <div><a href="{{ route('home') }}" class="btn btn-primary">
+            <div><a href="{{ route('home', ["selectioner_id" => $selectioner->id]) }}" class="btn btn-primary">
                     К списку</a>
             </div>
         </div>

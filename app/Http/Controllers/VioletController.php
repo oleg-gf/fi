@@ -65,7 +65,7 @@ class VioletController extends Controller
         $violet = $violet->findOrFail($id);
         if($violet){
             return view('violet.show', ['violet' => $violet,
-                                    'images' => Image::all()->where('violet_id', $violet->id),
+                                    'images' => Image::where('violet_id', $violet->id),
                                     'selectioner' => Selectioner::find($violet->selectioner_id)
                                     ]);
         }

@@ -1,3 +1,4 @@
+
 const swiper = new Swiper('.swiper', {
     // Optional parameters
     direction: 'horizontal',
@@ -24,9 +25,12 @@ const swiper = new Swiper('.swiper', {
       slideShadows: false,
     },
 
+    loop: true,
 
 
   });
+
+
 $(document).ready(function() {
 
     let window_size = window.matchMedia('(max-width: 600px)');
@@ -83,9 +87,20 @@ $(document).ready(function() {
 
 
   });
-$(".navbar-toggler").click(function() {
-    if (window_size.matches) {
-        $(".violets_sidebar_600").show();
-    }
-});
+    $(".navbar-toggler").click(function() {
+        if (window_size.matches) {
+            $(".violets_sidebar_600").show();
+        }
+    });
+
+
+      $('.lightbox').each(function() { // the containers for all your galleries
+        $(this).magnificPopup({
+            delegate: 'a', // the selector for gallery item
+            type: 'image',
+            gallery: {
+              enabled:true
+            }
+        });
+    });
 });
